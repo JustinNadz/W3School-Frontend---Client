@@ -6,7 +6,7 @@ import HTMLCSSLearningCompanion from '@/components/html-css-learning-companion'
 
 export default function CSSTutorial() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full">
       <Header />
       <TutorialLayout
         title="CSS Tutorial"
@@ -32,11 +32,11 @@ export default function CSSTutorial() {
           'CSS Responsive'
         ]}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="lg:col-span-2 xl:col-span-3 space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-[#9929EA] mb-4">What is CSS?</h2>
-              <ul className="space-y-2 text-gray-700">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#9929EA] mb-3 sm:mb-4">What is CSS?</h2>
+              <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
                 <li>• CSS stands for Cascading Style Sheets</li>
                 <li>• CSS describes how HTML elements are displayed</li>
                 <li>• CSS saves time - it can control multiple web pages at once</li>
@@ -45,7 +45,7 @@ export default function CSSTutorial() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-[#9929EA] mb-4">Try CSS Styling - Interactive Editor</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#9929EA] mb-3 sm:mb-4">Try CSS Styling - Interactive Editor</h2>
               <CodeExecutor
                 initialCode={`/* CSS Styles */
 body {
@@ -74,9 +74,9 @@ p {
               />
             </div>
 
-            <div className="bg-[#FAEB92] p-4 rounded-lg">
-              <h3 className="font-bold text-black mb-2">CSS Explained</h3>
-              <ul className="space-y-1 text-black text-sm">
+            <div className="bg-[#FAEB92] p-3 sm:p-4 rounded-lg">
+              <h3 className="font-bold text-black mb-2 text-sm sm:text-base">CSS Explained</h3>
+              <ul className="space-y-1 text-black text-xs sm:text-sm">
                 <li>• <strong>Selectors</strong> target HTML elements (body, h1, p, .highlight)</li>
                 <li>• <strong>Properties</strong> define what to style (color, font-size, background)</li>
                 <li>• <strong>Values</strong> specify how to style (colors, sizes, fonts)</li>
@@ -85,7 +85,7 @@ p {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-[#9929EA] mb-4">HTML + CSS Example</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#9929EA] mb-3 sm:mb-4">HTML + CSS Example</h2>
               <CodeExample
                 code={`<!DOCTYPE html>
 <html>

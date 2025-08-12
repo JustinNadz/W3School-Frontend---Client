@@ -57,6 +57,7 @@ export default function AIAssistant() {
   })
   const [showLearningPath, setShowLearningPath] = useState(false)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -74,6 +75,20 @@ export default function AIAssistant() {
   useEffect(() => {
     localStorage.setItem('userProgress', JSON.stringify(userProgress))
   }, [userProgress])
+
+  // Close on outside click
+  useEffect(() => {
+    if (!isOpen && !showLearningPath) return
+    const onDocClick = (e: MouseEvent) => {
+      const target = e.target as Node
+      if (cardRef.current && !cardRef.current.contains(target)) {
+        setIsOpen(false)
+        setShowLearningPath(false)
+      }
+    }
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
+  }, [isOpen, showLearningPath])
 
   const learningPaths: LearningPath[] = [
     {
@@ -376,7 +391,7 @@ export default function AIAssistant() {
   if (showLearningPath) {
     const recommendedPath = getRecommendedPath()
     return (
-      <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
+      <Card ref={cardRef} className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
         <CardHeader className="bg-[#9929EA] text-white rounded-t-lg flex-shrink-0">
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg">Your Learning Path</CardTitle>
@@ -445,7 +460,7 @@ export default function AIAssistant() {
   }
 
   return (
-    <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
+    <Card ref={cardRef} className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
       <CardHeader className="bg-[#9929EA] text-white rounded-t-lg flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

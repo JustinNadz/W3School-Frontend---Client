@@ -1,57 +1,120 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Search, Menu, X, Moon, Sun, User } from 'lucide-react'
+import { Search, Menu, X, Moon, Sun, User, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
-
-
 export default function Header() {
+  type Dropdown = 'none' | 'tutorials' | 'exercises' | 'certificates' | 'services'
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<Dropdown>('none')
+  const navRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 0)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Click outside to close dropdowns
+  useEffect(() => {
+    if (openDropdown === 'none') return
+    const onDocClick = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown('none')
+      }
+    }
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
+  }, [openDropdown])
+
+  const MenuButton = ({
+    id,
+    label,
+  }: {
+    id: Dropdown
+    label: string
+  }) => (
+    <div className="relative" onMouseLeave={() => setOpenDropdown('none')}>
+      <button
+        id={`${id}-trigger`}
+        aria-haspopup="menu"
+        aria-expanded={openDropdown === id}
+        aria-controls={`${id}-menu`}
+        onMouseEnter={() => setOpenDropdown(id)}
+        onClick={() => setOpenDropdown((prev) => (prev === id ? 'none' : id))}
+        className="px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 inline-flex items-center gap-1"
+      >
+        {label}
+        <ChevronDown className="h-4 w-4" />
+      </button>
+
+      {openDropdown === id && (
+        <div
+          id={`${id}-menu`}
+          role="menu"
+          aria-labelledby={`${id}-trigger`}
+          className="absolute left-0 top-full mt-2 w-72 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-xl z-[60] p-2"
+        >
+          {/* Simple representative items; keep routes intact */}
+          {id === 'tutorials' && (
+            <ul className="space-y-1 text-sm">
+              <li><Link href="/html" className="block rounded px-3 py-2 hover:bg-gray-100">HTML Tutorial</Link></li>
+              <li><Link href="/css" className="block rounded px-3 py-2 hover:bg-gray-100">CSS Tutorial</Link></li>
+            </ul>
+          )}
+          {id === 'exercises' && (
+            <ul className="space-y-1 text-sm">
+              <li><Link href="/html" className="block rounded px-3 py-2 hover:bg-gray-100">HTML Exercises</Link></li>
+              <li><Link href="/css" className="block rounded px-3 py-2 hover:bg-gray-100">CSS Exercises</Link></li>
+            </ul>
+          )}
+          {id === 'certificates' && (
+            <ul className="space-y-1 text-sm">
+              <li><Link href="/html" className="block rounded px-3 py-2 hover:bg-gray-100">HTML Certificate</Link></li>
+              <li><Link href="/css" className="block rounded px-3 py-2 hover:bg-gray-100">CSS Certificate</Link></li>
+            </ul>
+          )}
+          {id === 'services' && (
+            <ul className="space-y-1 text-sm">
+              <li><Link href="/html" className="block rounded px-3 py-2 hover:bg-gray-100">Code Editor (Try it)</Link></li>
+              <li><Link href="/css" className="block rounded px-3 py-2 hover:bg-gray-100">Quizzes</Link></li>
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  )
+
   return (
     <header className={`sticky top-0 z-50 bg-white transition-shadow duration-200 ${isScrolled ? 'shadow-lg' : 'border-b border-gray-200'}`}>
+      {/* Top gradient bar */}
       <div className="bg-gradient-to-r from-[#9929EA] to-[#B84AE8] text-white shadow-lg">
         <div className="w-full px-4 lg:px-6">
           <div className="flex items-center justify-between h-16 max-w-[1400px] mx-auto">
-            {/* Left Section: Logo + Navigation */}
+            {/* Left: Logo */}
             <div className="flex items-center space-x-8">
-              {/* Logo */}
               <Link href="/" className="flex items-center space-x-3 flex-shrink-0 group">
-                <div className="bg-white text-[#9929EA] px-3 py-2 rounded-lg font-bold text-xl shadow-md group-hover:shadow-lg transition-shadow duration-200">
-                  W³
-                </div>
+                <div className="bg-white text-[#9929EA] px-3 py-2 rounded-lg font-bold text-xl shadow-md group-hover:shadow-lg transition-shadow duration-200">W³</div>
                 <span className="text-lg font-semibold tracking-wide">schools</span>
               </Link>
 
-              {/* Navigation Links */}
-              <nav className="hidden lg:flex items-center space-x-6">
-                <Link href="/html" className="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-all duration-200">
-                  HTML
-                </Link>
-                <Link href="/css" className="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-all duration-200">
-                  CSS
-                </Link>
-                <Link href="#" className="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition-all duration-200">
-                  Exercises
-                </Link>
+              {/* Primary nav with dropdowns */}
+              <nav ref={navRef as React.RefObject<HTMLElement>} className="hidden lg:flex items-center space-x-2">
+                <MenuButton id="tutorials" label="Tutorials" />
+                <MenuButton id="exercises" label="Exercises" />
+                <MenuButton id="certificates" label="Certificates" />
+                <MenuButton id="services" label="Services" />
               </nav>
             </div>
 
-            {/* Center Section: Search Bar */}
+            {/* Center: Search */}
             <div className="hidden lg:flex relative flex-1 max-w-sm mx-8">
               <Input
                 type="text"
@@ -60,15 +123,12 @@ export default function Header() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-white/95 text-gray-800 border-none rounded-full h-9 pr-10 pl-4 shadow-sm focus:shadow-md focus:bg-white transition-all duration-200 placeholder:text-gray-500"
               />
-              <Button 
-                size="sm" 
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 bg-[#9929EA] hover:bg-[#8B1FD6] rounded-full p-0"
-              >
+              <Button size="sm" className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 bg-[#9929EA] hover:bg-[#8B1FD6] rounded-full p-0">
                 <Search className="h-3 w-3 text-white" />
               </Button>
             </div>
 
-            {/* Right Section: Actions */}
+            {/* Right Actions */}
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
@@ -84,7 +144,7 @@ export default function Header() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu button */}
             <Button
               variant="ghost"
               size="sm"
@@ -97,13 +157,21 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Secondary subject bar: HTML / CSS */}
+      <div className="hidden lg:block bg-[#1f2937] text-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 lg:px-6">
+          <div className="flex items-center gap-6 h-10">
+            <Link href="/html" className="text-sm hover:text-white">HTML</Link>
+            <Link href="/css" className="text-sm hover:text-white">CSS</Link>
+          </div>
+        </div>
+      </div>
 
-
+      {/* Mobile dropdown panel */}
       {isMenuOpen && (
         <div className="lg:hidden bg-gradient-to-b from-[#9929EA] to-[#B84AE8] text-white shadow-lg">
           <div className="px-6 py-4">
             <div className="flex flex-col space-y-4">
-              {/* Mobile Search */}
               <div className="relative">
                 <Input
                   type="text"
@@ -112,28 +180,21 @@ export default function Header() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="bg-white/95 text-gray-800 border-none rounded-full h-10 pr-10 pl-4 shadow-md placeholder:text-gray-500"
                 />
-                <Button 
-                  size="sm" 
-                  className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 bg-[#9929EA] hover:bg-[#8B1FD6] rounded-full p-0"
-                >
+                <Button size="sm" className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 bg-[#9929EA] hover:bg-[#8B1FD6] rounded-full p-0">
                   <Search className="h-3 w-3 text-white" />
                 </Button>
               </div>
-              
-              {/* Mobile Navigation */}
+
+              {/* Mobile links */}
               <div className="border-t border-white/20 pt-4 space-y-2">
-                <Link href="/html" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">
-                  HTML
-                </Link>
-                <Link href="/css" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">
-                  CSS
-                </Link>
-                <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">
-                  Exercises
-                </Link>
+                <Link href="/html" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">HTML</Link>
+                <Link href="/css" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">CSS</Link>
+                <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Tutorials</Link>
+                <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Exercises</Link>
+                <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Certificates</Link>
+                <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Services</Link>
               </div>
-              
-              {/* Mobile Actions */}
+
               <div className="border-t border-white/20 pt-4">
                 <Button className="bg-gradient-to-r from-[#00AA6C] to-[#00C774] hover:from-[#008A5A] hover:to-[#00A862] text-white w-full py-3 font-semibold shadow-lg rounded-lg">
                   <User className="h-4 w-4 mr-2" />

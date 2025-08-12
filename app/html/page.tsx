@@ -5,7 +5,7 @@ import HTMLCSSLearningCompanion from '@/components/html-css-learning-companion'
 
 export default function HTMLTutorial() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full">
       <Header />
       <TutorialLayout
         title="HTML Tutorial"
@@ -32,11 +32,11 @@ export default function HTMLTutorial() {
           'HTML Forms'
         ]}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="lg:col-span-2 xl:col-span-3 space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-[#9929EA] mb-4">What is HTML?</h2>
-              <ul className="space-y-2 text-gray-700">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#9929EA] mb-3 sm:mb-4">What is HTML?</h2>
+              <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
                 <li>• HTML stands for Hyper Text Markup Language</li>
                 <li>• HTML is the standard markup language for creating Web pages</li>
                 <li>• HTML describes the structure of a Web page</li>
@@ -46,7 +46,7 @@ export default function HTMLTutorial() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-[#9929EA] mb-4">Try It Yourself - Interactive Editor</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#9929EA] mb-3 sm:mb-4">Try It Yourself - Interactive Editor</h2>
               <CodeExecutor
                 initialCode={`<!DOCTYPE html>
 <html>
@@ -64,9 +64,9 @@ export default function HTMLTutorial() {
               />
             </div>
 
-            <div className="bg-[#FAEB92] p-4 rounded-lg">
-              <h3 className="font-bold text-black mb-2">Example Explained</h3>
-              <ul className="space-y-1 text-black text-sm">
+            <div className="bg-[#FAEB92] p-3 sm:p-4 rounded-lg">
+              <h3 className="font-bold text-black mb-2 text-sm sm:text-base">Example Explained</h3>
+              <ul className="space-y-1 text-black text-xs sm:text-sm">
                 <li>• The <code>&lt;!DOCTYPE html&gt;</code> declaration defines this document to be HTML5</li>
                 <li>• The <code>&lt;html&gt;</code> element is the root element of an HTML page</li>
                 <li>• The <code>&lt;head&gt;</code> element contains meta information about the HTML page</li>
