@@ -67,3 +67,4 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
     </Modal>
   );
 }
+
