@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Search, Menu, X, Moon, Sun, User, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import AuthModal from '@/components/auth-modal'
 
 export default function Header() {
   type Dropdown = 'none' | 'tutorials' | 'exercises' | 'certificates' | 'services'
@@ -14,6 +15,7 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<Dropdown>('none')
+  const [isAuthOpen, setIsAuthOpen] = useState(false)
   const navRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -22,7 +24,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Click outside to close dropdowns
   useEffect(() => {
     if (openDropdown === 'none') return
     const onDocClick = (e: MouseEvent) => {
@@ -34,25 +35,22 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', onDocClick)
   }, [openDropdown])
 
-  const MenuButton = ({
-    id,
-    label,
-  }: {
-    id: Dropdown
-    label: string
-  }) => (
-    <div className="relative" onMouseLeave={() => setOpenDropdown('none')}>
+  const toggleDropdown = (id: Dropdown) => {
+    setOpenDropdown(prev => (prev === id ? 'none' : id))
+  }
+
+  const MenuButton = ({ id, label }: { id: Dropdown; label: string }) => (
+    <div className="relative">
       <button
         id={`${id}-trigger`}
         aria-haspopup="menu"
         aria-expanded={openDropdown === id}
         aria-controls={`${id}-menu`}
-        onMouseEnter={() => setOpenDropdown(id)}
-        onClick={() => setOpenDropdown((prev) => (prev === id ? 'none' : id))}
+        onClick={() => toggleDropdown(id)}
         className="px-3 py-2 text-sm font-medium rounded-lg hover:bg-white/10 inline-flex items-center gap-1"
       >
         {label}
-        <ChevronDown className="h-4 w-4" />
+        <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === id ? 'rotate-180' : ''}`} />
       </button>
 
       {openDropdown === id && (
@@ -61,8 +59,8 @@ export default function Header() {
           role="menu"
           aria-labelledby={`${id}-trigger`}
           className="absolute left-0 top-full mt-2 w-72 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-xl z-[60] p-2"
+          onKeyDown={(e) => { if (e.key === 'Escape') setOpenDropdown('none') }}
         >
-          {/* Simple representative items; keep routes intact */}
           {id === 'tutorials' && (
             <ul className="space-y-1 text-sm">
               <li><Link href="/html" className="block rounded px-3 py-2 hover:bg-gray-100">HTML Tutorial</Link></li>
@@ -94,18 +92,16 @@ export default function Header() {
 
   return (
     <header className={`sticky top-0 z-50 bg-white transition-shadow duration-200 ${isScrolled ? 'shadow-lg' : 'border-b border-gray-200'}`}>
-      {/* Top gradient bar */}
+      <AuthModal open={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       <div className="bg-gradient-to-r from-[#9929EA] to-[#B84AE8] text-white shadow-lg">
         <div className="w-full px-4 lg:px-6">
           <div className="flex items-center justify-between h-16 max-w-[1400px] mx-auto">
-            {/* Left: Logo */}
             <div className="flex items-center space-x-8">
               <Link href="/" className="flex items-center space-x-3 flex-shrink-0 group">
                 <div className="bg-white text-[#9929EA] px-3 py-2 rounded-lg font-bold text-xl shadow-md group-hover:shadow-lg transition-shadow duration-200">W³</div>
                 <span className="text-lg font-semibold tracking-wide">schools</span>
               </Link>
 
-              {/* Primary nav with dropdowns */}
               <nav ref={navRef as React.RefObject<HTMLElement>} className="hidden lg:flex items-center space-x-2">
                 <MenuButton id="tutorials" label="Tutorials" />
                 <MenuButton id="exercises" label="Exercises" />
@@ -114,7 +110,6 @@ export default function Header() {
               </nav>
             </div>
 
-            {/* Center: Search */}
             <div className="hidden lg:flex relative flex-1 max-w-sm mx-8">
               <Input
                 type="text"
@@ -128,7 +123,6 @@ export default function Header() {
               </Button>
             </div>
 
-            {/* Right Actions */}
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
@@ -138,13 +132,12 @@ export default function Header() {
               >
                 {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
-              <Button className="bg-gradient-to-r from-[#00AA6C] to-[#00C774] hover:from-[#008A5A] hover:to-[#00A862] text-white px-4 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+              <Button onClick={() => setIsAuthOpen(true)} className="bg-gradient-to-r from-[#00AA6C] to-[#00C774] hover:from-[#008A5A] hover:to-[#00A862] text-white px-4 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
                 <User className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
             </div>
 
-            {/* Mobile menu button */}
             <Button
               variant="ghost"
               size="sm"
@@ -157,7 +150,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Secondary subject bar: HTML / CSS */}
       <div className="hidden lg:block bg-[#1f2937] text-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-6">
           <div className="flex items-center gap-6 h-10">
@@ -167,7 +159,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile dropdown panel */}
       {isMenuOpen && (
         <div className="lg:hidden bg-gradient-to-b from-[#9929EA] to-[#B84AE8] text-white shadow-lg">
           <div className="px-6 py-4">
@@ -184,8 +175,6 @@ export default function Header() {
                   <Search className="h-3 w-3 text-white" />
                 </Button>
               </div>
-
-              {/* Mobile links */}
               <div className="border-t border-white/20 pt-4 space-y-2">
                 <Link href="/html" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">HTML</Link>
                 <Link href="/css" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">CSS</Link>
@@ -194,9 +183,8 @@ export default function Header() {
                 <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Certificates</Link>
                 <Link href="#" className="block text-white py-3 px-4 rounded-lg hover:bg-white/10 transition-colors font-medium">Services</Link>
               </div>
-
               <div className="border-t border-white/20 pt-4">
-                <Button className="bg-gradient-to-r from-[#00AA6C] to-[#00C774] hover:from-[#008A5A] hover:to-[#00A862] text-white w-full py-3 font-semibold shadow-lg rounded-lg">
+                <Button onClick={() => setIsAuthOpen(true)} className="bg-gradient-to-r from-[#00AA6C] to-[#00C774] hover:from-[#008A5A] hover:to-[#00A862] text-white w-full py-3 font-semibold shadow-lg rounded-lg">
                   <User className="h-4 w-4 mr-2" />
                   Sign In
                 </Button>
