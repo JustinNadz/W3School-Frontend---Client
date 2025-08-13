@@ -9,11 +9,13 @@ import { Textarea } from '@/components/ui/textarea'
 interface CodeExecutorProps {
   initialCode?: string
   language: string
+  onCodeChange?: (code: string) => void
 }
 
 export default function CodeExecutor({ 
   initialCode = '', 
-  language
+  language,
+  onCodeChange
 }: CodeExecutorProps) {
   const [code, setCode] = useState(initialCode)
   const [output, setOutput] = useState('')
@@ -92,7 +94,10 @@ export default function CodeExecutor({
           </label>
           <Textarea
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => {
+              setCode(e.target.value)
+              onCodeChange?.(e.target.value)
+            }}
             className="font-mono text-sm min-h-[200px] bg-gray-50"
             placeholder={`Enter your ${language} code here...`}
           />
