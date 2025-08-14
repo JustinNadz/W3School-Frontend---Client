@@ -3,11 +3,8 @@ import TutorialLayout from '@/components/tutorial-layout'
 import CodeExample from '@/components/code-example'
 import CodeExecutor from '@/components/code-executor'
 import HTMLCSSLearningCompanion from '@/components/html-css-learning-companion'
-<<<<<<< HEAD
-=======
 import FloatingChatbot from '@/components/floating-chatbot'
 import { Button } from '@/components/ui/button'
->>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
 
 export default function CSSTutorial() {
   return (
@@ -37,14 +34,9 @@ export default function CSSTutorial() {
           'CSS Responsive'
         ]}
       >
-<<<<<<< HEAD
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-=======
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
           {/* Middle Content Area - Tutorial Content */}
           <div className="lg:col-span-2 space-y-6 overflow-y-auto">
->>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <div>
               <h2 className="text-2xl font-bold text-[#9929EA] mb-4">What is CSS?</h2>
               <ul className="space-y-2 text-gray-700">
@@ -83,13 +75,6 @@ p {
 }`}
                 language="css"
               />
-<<<<<<< HEAD
-            </div>
-
-            <div className="bg-[#FAEB92] p-4 rounded-lg">
-              <h3 className="font-bold text-black mb-2">CSS Explained</h3>
-              <ul className="space-y-1 text-black text-sm">
-=======
               
               {/* Try it Yourself button below the code editor */}
               <div className="mt-6 text-center">
@@ -102,7 +87,6 @@ p {
             <div className="bg-[#FAEB92] p-4 rounded-lg">
               <h3 className="font-bold text-[#9929EA] mb-2">CSS Explained</h3>
               <ul className="space-y-1 text-[#9929EA] text-sm">
->>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                 <li>• <strong>Selectors</strong> target HTML elements (body, h1, p, .highlight)</li>
                 <li>• <strong>Properties</strong> define what to style (color, font-size, background)</li>
                 <li>• <strong>Values</strong> specify how to style (colors, sizes, fonts)</li>
@@ -143,13 +127,6 @@ p {
             </div>
           </div>
           
-<<<<<<< HEAD
-          <div className="lg:col-span-1">
-            <HTMLCSSLearningCompanion />
-          </div>
-        </div>
-      </TutorialLayout>
-=======
           {/* Right Sidebar - AI-Powered Learning Widget */}
           <div className="lg:col-span-1 overflow-y-auto">
             <div className="sticky top-0">
@@ -159,7 +136,6 @@ p {
         </div>
       </TutorialLayout>
       <FloatingChatbot />
->>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
     </div>
   )
 }
