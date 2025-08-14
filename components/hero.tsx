@@ -11,7 +11,11 @@ export default function Hero() {
 
   return (
     <section className={`${styles.hero} text-white py-20`}>
+<<<<<<< HEAD
       <div className="container mx-auto px-4 text-center">
+=======
+      <div className="w-full px-4 text-center max-w-[1920px] mx-auto">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           Learn to Code
         </h1>
@@ -26,7 +30,11 @@ export default function Hero() {
               placeholder="Search our tutorials, e.g. HTML"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+<<<<<<< HEAD
               className="flex-1 border-none rounded-none h-14 text-lg px-6 text-black"
+=======
+                              className="flex-1 border-none rounded-none h-14 text-lg px-6 text-[#9929EA]"
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             />
             <Button className="bg-[#00AA6C] hover:bg-[#008A5A] h-14 px-8 rounded-none">
               <Search className="h-5 w-5" />

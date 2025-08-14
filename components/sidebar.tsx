@@ -49,18 +49,30 @@ export default function Sidebar() {
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 rounded-lg">
             <div className="text-2xl font-bold text-[#00AA6C]">7</div>
+<<<<<<< HEAD
             <div className="text-xs text-gray-600 font-medium">Day Streak</div>
           </div>
           <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg">
             <div className="text-2xl font-bold text-[#9929EA]">1,250</div>
             <div className="text-xs text-gray-600 font-medium">XP Points</div>
+=======
+                         <div className="text-xs text-gray-700 font-medium">Day Streak</div>
+          </div>
+          <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg">
+            <div className="text-2xl font-bold text-[#9929EA]">1,250</div>
+                         <div className="text-xs text-gray-700 font-medium">XP Points</div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
           </div>
         </div>
 
         {/* Today's Progress */}
         <div className="bg-gray-50 rounded-lg p-3 mb-4">
           <div className="flex items-center justify-between mb-2">
+<<<<<<< HEAD
             <span className="text-sm font-medium text-gray-700">Today&apos;s Progress</span>
+=======
+            <span className="text-sm font-medium text-gray-800">Today&apos;s Progress</span>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <span className="text-sm font-bold text-[#9929EA]">0m</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -85,8 +97,13 @@ export default function Sidebar() {
               offset={[8, -8]}
             />
           </div>
+<<<<<<< HEAD
           <div className="text-sm font-medium text-gray-700 mt-2">Achievement Unlocked!</div>
           <div className="text-xs text-gray-500">HTML Basics Master</div>
+=======
+                     <div className="text-sm font-medium text-gray-800 mt-2">Achievement Unlocked!</div>
+                     <div className="text-xs text-gray-600 font-medium">HTML Basics Master</div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
         </div>
 
         <Divider style={{ margin: '16px 0' }} />
@@ -135,7 +152,11 @@ export default function Sidebar() {
           <AntButton type="link" size="small" className="text-[#9929EA] p-0 h-auto">
             full calendar
           </AntButton>
+<<<<<<< HEAD
           <AntButton type="link" size="small" className="text-gray-500 p-0 h-auto">
+=======
+          <AntButton type="link" size="small" className="text-gray-700 p-0 h-auto font-medium">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             hide
           </AntButton>
         </div>
@@ -205,7 +226,11 @@ export default function Sidebar() {
                 />
               ]}
             >
+<<<<<<< HEAD
               <span className={`${todo.completed ? 'text-gray-500' : 'text-gray-800'}`}>
+=======
+              <span className={`${todo.completed ? 'text-gray-600' : 'text-gray-900'} font-medium`}>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                 {todo.text}
               </span>
             </List.Item>

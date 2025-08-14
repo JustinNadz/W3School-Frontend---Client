@@ -2,6 +2,11 @@ import Header from '@/components/header'
 import TutorialLayout from '@/components/tutorial-layout'
 import CodeExecutor from '@/components/code-executor'
 import HTMLCSSLearningCompanion from '@/components/html-css-learning-companion'
+<<<<<<< HEAD
+=======
+import FloatingChatbot from '@/components/floating-chatbot'
+import { Button } from '@/components/ui/button'
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
 
 export default function HTMLTutorial() {
   return (
@@ -32,8 +37,14 @@ export default function HTMLTutorial() {
           'HTML Forms'
         ]}
       >
+<<<<<<< HEAD
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
+=======
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
+          {/* Middle Content Area - Tutorial Content */}
+          <div className="lg:col-span-2 space-y-6 overflow-y-auto">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <div>
               <h2 className="text-2xl font-bold text-[#9929EA] mb-4">What is HTML?</h2>
               <ul className="space-y-2 text-gray-700">
@@ -62,11 +73,26 @@ export default function HTMLTutorial() {
 </html>`}
                 language="html"
               />
+<<<<<<< HEAD
             </div>
 
             <div className="bg-[#FAEB92] p-4 rounded-lg">
               <h3 className="font-bold text-black mb-2">Example Explained</h3>
               <ul className="space-y-1 text-black text-sm">
+=======
+              
+              {/* Try it Yourself button below the code editor */}
+              <div className="mt-6 text-center">
+                <Button className="bg-[#00AA6C] hover:bg-[#008A5A] text-white text-lg px-8 py-3">
+                  Try it Yourself »
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-[#FAEB92] p-4 rounded-lg">
+              <h3 className="font-bold text-[#9929EA] mb-2">Example Explained</h3>
+              <ul className="space-y-1 text-[#9929EA] text-sm">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                 <li>• The <code>&lt;!DOCTYPE html&gt;</code> declaration defines this document to be HTML5</li>
                 <li>• The <code>&lt;html&gt;</code> element is the root element of an HTML page</li>
                 <li>• The <code>&lt;head&gt;</code> element contains meta information about the HTML page</li>
@@ -78,11 +104,23 @@ export default function HTMLTutorial() {
             </div>
           </div>
           
+<<<<<<< HEAD
           <div className="lg:col-span-1">
             <HTMLCSSLearningCompanion />
           </div>
         </div>
       </TutorialLayout>
+=======
+          {/* Right Sidebar - AI-Powered Learning Widget */}
+          <div className="lg:col-span-1 overflow-y-auto">
+            <div className="sticky top-0">
+              <HTMLCSSLearningCompanion />
+            </div>
+          </div>
+        </div>
+      </TutorialLayout>
+      <FloatingChatbot />
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
     </div>
   )
 }

@@ -15,7 +15,11 @@ export default function MainContent() {
             <div className="p-2 bg-[#9929EA] bg-opacity-10 rounded-lg">
               <BookOpen className="h-6 w-6 text-[#9929EA]" />
             </div>
+<<<<<<< HEAD
             <h2 className="text-2xl font-bold text-gray-800">Your Learning Journey</h2>
+=======
+                         <h2 className="text-2xl font-bold text-gray-900">Your Learning Journey</h2>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
           </div>
           <Badge 
             count={3} 
@@ -30,7 +34,11 @@ export default function MainContent() {
         {/* Overall Progress Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3">
+<<<<<<< HEAD
             <span className="text-lg font-semibold text-gray-800">Overall Progress</span>
+=======
+                         <span className="text-lg font-semibold text-gray-900">Overall Progress</span>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <span className="text-2xl font-bold text-[#9929EA]">45%</span>
           </div>
                      <Progress 
@@ -43,7 +51,11 @@ export default function MainContent() {
              size={8}
              className="mb-2"
            />
+<<<<<<< HEAD
           <div className="text-sm text-gray-500">Keep going! You&apos;re doing great.</div>
+=======
+          <div className="text-sm text-gray-700 font-medium">Keep going! You&apos;re doing great.</div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
         </div>
 
         {/* Learning Path */}
@@ -59,9 +71,15 @@ export default function MainContent() {
                   <span className="px-2 py-1 bg-[#00AA6C] text-white text-xs font-semibold rounded-full">
                     Completed
                   </span>
+<<<<<<< HEAD
                   <span className="font-semibold text-gray-800">HTML Fundamentals</span>
                 </div>
                 <p className="text-sm text-gray-600">Learn the structure of web pages</p>
+=======
+                                     <span className="font-semibold text-gray-900">HTML Fundamentals</span>
+                </div>
+                <p className="text-sm text-gray-700 font-medium">Learn the structure of web pages</p>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
               </div>
             </div>
             <Trophy className="h-5 w-5 text-[#00AA6C]" />
@@ -78,9 +96,15 @@ export default function MainContent() {
                   <span className="px-2 py-1 bg-[#9929EA] text-white text-xs font-semibold rounded-full">
                     In Progress
                   </span>
+<<<<<<< HEAD
                   <span className="font-semibold text-gray-800">CSS Styling</span>
                 </div>
                 <p className="text-sm text-gray-600 mb-2">Make your pages beautiful</p>
+=======
+                                     <span className="font-semibold text-gray-900">CSS Styling</span>
+                </div>
+                <p className="text-sm text-gray-700 font-medium mb-2">Make your pages beautiful</p>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                 <div className="flex items-center space-x-2">
                   <Progress 
                     percent={60} 
@@ -106,9 +130,15 @@ export default function MainContent() {
                   <span className="px-2 py-1 bg-gray-400 text-white text-xs font-semibold rounded-full">
                     Locked
                   </span>
+<<<<<<< HEAD
                   <span className="font-semibold text-gray-500">Responsive Design</span>
                 </div>
                 <p className="text-sm text-gray-500">Create mobile-friendly layouts</p>
+=======
+                                     <span className="font-semibold text-gray-600">Responsive Design</span>
+                 </div>
+                 <p className="text-sm text-gray-600 font-medium">Create mobile-friendly layouts</p>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
               </div>
             </div>
             <Clock className="h-5 w-5 text-gray-400" />

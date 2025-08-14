@@ -9,11 +9,20 @@ import { Textarea } from '@/components/ui/textarea'
 interface CodeExecutorProps {
   initialCode?: string
   language: string
+<<<<<<< HEAD
+=======
+  onCodeChange?: (code: string) => void
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
 }
 
 export default function CodeExecutor({ 
   initialCode = '', 
+<<<<<<< HEAD
   language
+=======
+  language,
+  onCodeChange
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
 }: CodeExecutorProps) {
   const [code, setCode] = useState(initialCode)
   const [output, setOutput] = useState('')
@@ -92,7 +101,14 @@ export default function CodeExecutor({
           </label>
           <Textarea
             value={code}
+<<<<<<< HEAD
             onChange={(e) => setCode(e.target.value)}
+=======
+            onChange={(e) => {
+              setCode(e.target.value)
+              onCodeChange?.(e.target.value)
+            }}
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             className="font-mono text-sm min-h-[200px] bg-gray-50"
             placeholder={`Enter your ${language} code here...`}
           />
@@ -112,8 +128,13 @@ export default function CodeExecutor({
         )}
 
         <div className="bg-[#FAEB92] p-4 rounded-lg">
+<<<<<<< HEAD
           <h4 className="font-bold text-black mb-2">💡 Learning Tips:</h4>
           <ul className="text-black text-sm space-y-1">
+=======
+                        <h4 className="font-bold text-[#9929EA] mb-2">💡 Learning Tips:</h4>
+              <ul className="text-[#9929EA] text-sm space-y-1">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <li>• Use the AI chat assistant for help understanding your code</li>
             <li>• Try modifying the code to see different results</li>
             <li>• Ask specific questions about syntax or logic</li>

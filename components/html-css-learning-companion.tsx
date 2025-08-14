@@ -123,8 +123,13 @@ export default function HTMLCSSLearningCompanion() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center">
+<<<<<<< HEAD
             <h3 className="font-semibold text-lg mb-2">{stats.currentLesson}</h3>
             <p className="text-gray-600 mb-4">
+=======
+            <h3 className="font-semibold text-lg mb-2 text-gray-900">{stats.currentLesson}</h3>
+            <p className="text-gray-700 mb-4 font-medium">
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
               {stats.completedLessons} of {stats.totalLessons} lessons completed
             </p>
           </div>
@@ -132,6 +137,7 @@ export default function HTMLCSSLearningCompanion() {
           <div className="bg-gradient-to-r from-[#9929EA] to-[#CC66DA] text-white p-3 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
+<<<<<<< HEAD
                 <div className="text-sm opacity-90">Questions Asked</div>
                 <div className="text-2xl font-bold">{stats.questionsAsked}</div>
               </div>
@@ -141,6 +147,17 @@ export default function HTMLCSSLearningCompanion() {
                   {stats.skillLevel}
                 </div>
               </div>
+=======
+                                  <div className="text-sm font-medium">Questions Asked</div>
+                  <div className="text-2xl font-bold">{stats.questionsAsked}</div>
+                </div>
+                <div>
+                  <div className="text-sm font-medium">Skill Level</div>
+                  <div className={`text-sm px-2 py-1 rounded ${getSkillLevelColor(stats.skillLevel)} text-black font-medium`}>
+                    {stats.skillLevel}
+                  </div>
+                </div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             </div>
           </div>
 
@@ -168,12 +185,21 @@ export default function HTMLCSSLearningCompanion() {
           
           <div className="grid grid-cols-2 gap-4 mt-4">
             <div className="text-center p-3 bg-[#FAEB92] rounded-lg">
+<<<<<<< HEAD
               <div className="text-2xl font-bold text-black">{stats.streak}</div>
               <div className="text-sm text-black">Day Streak</div>
             </div>
             <div className="text-center p-3 bg-[#CC66DA] text-white rounded-lg">
               <div className="text-2xl font-bold">🤖</div>
               <div className="text-sm">AI Guided</div>
+=======
+              <div className="text-2xl font-bold text-gray-900">{stats.streak}</div>
+              <div className="text-sm font-medium text-gray-800">Day Streak</div>
+            </div>
+            <div className="text-center p-3 bg-[#CC66DA] text-white rounded-lg">
+              <div className="text-2xl font-bold">🤖</div>
+              <div className="text-sm font-medium">AI Guided</div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             </div>
           </div>
         </CardContent>
@@ -204,7 +230,11 @@ export default function HTMLCSSLearningCompanion() {
                       : 'bg-gray-50 text-gray-600'
                   }`}
                 >
+<<<<<<< HEAD
                   <span>{topic.name}</span>
+=======
+                  <span className="font-medium">{topic.name}</span>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                   {topic.completed && <span>✅</span>}
                   {topic.current && <span>📍</span>}
                 </div>
@@ -229,7 +259,11 @@ export default function HTMLCSSLearningCompanion() {
                       : 'bg-gray-50 text-gray-400'
                   }`}
                 >
+<<<<<<< HEAD
                   <span>{topic.name}</span>
+=======
+                  <span className="font-medium">{topic.name}</span>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                   {topic.completed && <span>✅</span>}
                   {topic.current && <span>📍</span>}
                   {!topic.completed && !topic.current && <span>🔒</span>}
@@ -240,7 +274,11 @@ export default function HTMLCSSLearningCompanion() {
 
           <div className="p-4 bg-gradient-to-r from-[#9929EA] to-[#CC66DA] text-white rounded-lg">
             <h4 className="font-semibold mb-2">AI Recommended Next:</h4>
+<<<<<<< HEAD
             <p className="text-sm mb-3">{stats.nextSuggestion}</p>
+=======
+            <p className="text-sm mb-3 font-medium">{stats.nextSuggestion}</p>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
             <Button 
               variant="secondary" 
               size="sm"
@@ -264,7 +302,11 @@ export default function HTMLCSSLearningCompanion() {
             {learningTips.map((tip, index) => (
               <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
                 <div className="text-[#9929EA] mt-0.5">🤖</div>
+<<<<<<< HEAD
                 <p className="text-sm text-gray-700">{tip}</p>
+=======
+                <p className="text-sm text-gray-800 font-medium">{tip}</p>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
               </div>
             ))}
           </div>
@@ -291,8 +333,13 @@ export default function HTMLCSSLearningCompanion() {
               >
                 <div className="text-2xl">{achievement.icon}</div>
                 <div className="flex-1">
+<<<<<<< HEAD
                   <div className="font-medium">{achievement.name}</div>
                   <div className="text-sm text-gray-600">{achievement.description}</div>
+=======
+                  <div className="font-medium text-gray-900">{achievement.name}</div>
+                  <div className="text-sm text-gray-700 font-medium">{achievement.description}</div>
+>>>>>>> 175e78b43188cdb41dad50b85d26488d781b2ffd
                 </div>
                 {achievement.unlocked && (
                   <div className="text-[#9929EA] font-bold">✓</div>
